@@ -9,12 +9,25 @@ const App = () => {
   const addName = (event) => {
     event.preventDefault()
     console.log('button clicked', event.target)
-    const nameObject = {
-      name: newName
+    console.log(persons)
+    const nameObject = [
+      {name: newName}
+    ]
+    console.log('nameObject', nameObject)
+    console.log('persons:', persons)
+    const names = persons.map(person => person.name)
+    console.log('names', names)
+
+    if (names.includes(newName)) {
+      window.alert(`${newName} is already added to phonebook`)
     }
-  
-    setPersons(persons.concat(nameObject))
-    setNewName('')
+    else {
+      setPersons(persons.concat(nameObject)) 
+      setNewName('')
+    }
+    
+    
+    
   }
   
   const handleInputChange = (event) => {
@@ -28,7 +41,6 @@ const App = () => {
     )
   }
 
-
   return (
     <div>
       <h2>Phonebook</h2>
@@ -41,7 +53,7 @@ const App = () => {
             />
         </div>
         <div>
-          <button type="submit">add</button>
+          <button type="submit" >add</button>
         </div>
       </form>
       <h2>Numbers</h2>
